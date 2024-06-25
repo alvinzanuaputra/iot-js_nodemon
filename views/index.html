@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS ARDUINO CTT MANAGE</title>
+</head>
+
+//pemanggilan library socket io
+<script src="/socket.io/socket.io">
+</script>
+
+
+<script>
+    const socket = io();
+    socket.on("data", ({ data }) => {
+        let component = document.getElementById("data")
+        componet.textContent = "dari arduino => " + data;
+    })
+
+    function Arduino (){
+        
+        fetch("http://localhost:3000/arduinoApi", 
+        {
+            method : "POST",
+            body: JSON.stringfy({data}),
+            headers: {"Content_Type": "application/json"}
+        })
+    }
+</script>
+
+<body>
+    <h2> HAII </h2>
+    <p id="data"></p>
+    <button onclick="Arduino('1')"> NYALAKAN LAMPU </button>
+    <button onclick="Arduino('2')"> MATIKAN LAMPU </button>
+</body>
+
+</html>
